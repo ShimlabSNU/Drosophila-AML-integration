@@ -5,14 +5,9 @@ control), compared with seven published larval hemocyte datasets.
 
 Paper: [title, authors, journal, DOI — to add]
 
-The six notebooks build one atlas from the published datasets and the leukemia dataset, integrate the circulating
-hemocytes, transfer the leukemia (AML) cluster labels to the published datasets, and draw the paper figures F0–F8.
 
 ## Notebooks
-
-Each notebook explains its steps in plain words above the code.
-
-| # | notebook | what it does |
+| # | notebook | function |
 |---|---|---|
 | 01 | `01_build_atlas.ipynb` | joins the published datasets and the leukemia dataset into one count matrix (FlyBase gene IDs); removes cells with 200 or fewer detected genes and cells without a published label; normalises |
 | 02 | `02_integration.ipynb` | selects 2,000 highly variable genes from the unperturbed control cells; PCA, Harmony and UMAP of the circulating cells |
@@ -24,9 +19,9 @@ Each notebook explains its steps in plain words above the code.
 `settings.py` holds what the notebooks share: where the data are, the names of the files passed from one notebook
 to the next, the AML cluster names and the random seed.
 
-## Data
 
-The count data are not in this repository. Download them into a folder `data/` next to the notebooks:
+## Data
+The count data are not in this repository. Public datasets were placed as following:
 
 ```
 data/
@@ -47,16 +42,14 @@ data/
 | `yoon_w1118_10x_figshare_16585805` | Yoon et al. 2023, metadata of the 10x *w1118* hemocytes (only `metadata.txt` is used): https://doi.org/10.6084/m9.figshare.16585805 |
 | `flybase_fb_2026_02` | FlyBase release FB2026_02: https://s3ftp.flybase.org/releases/FB2026_02/precomputed_files/genes/fbgn_annotation_ID_fb_2026_02.tsv.gz and https://s3ftp.flybase.org/releases/FB2026_02/precomputed_files/synonyms/fb_synonym_fb_2026_02.tsv.gz |
 
-Three small tables are in `inputs/`:
+Three small tables for result reproducibility are in `inputs/`:
 
 | file | content |
 |---|---|
-| `samples.tsv` | one row per sample: its library name in the Yoon et al. data, dataset, experiment, condition (control, wasp, injury, selected_uninfected, AML1-ETO, RasV12), compartment, technology, and the Harmony batch (the sample's matched control experiment) |
-| `published_labels.tsv.gz` | the cluster label that each original study published for its cells, and where the label was taken from (the labels of the leukemia dataset are in its GEO metadata) |
-| `umap_start_positions.tsv.gz` | starting positions for the UMAP of notebook 02, from an earlier version of the same analysis; they only fix the arrangement of the UMAP picture (F0) |
+| `samples.tsv` | each sample's library name in the Yoon et al. data, dataset, experiment, condition (control, wasp, injury, selected_uninfected, AML1-ETO, RasV12), compartment, technology, and the Harmony batch (the sample's matched control experiment) |
+| `published_labels.tsv.gz` | the cluster label that each original study published for its cells, and where the label was taken from|
+| `umap_start_positions.tsv.gz` | starting positions for the UMAP of notebook 02 used for coherent representation|
 
-If the data are in another folder, write that folder's path (the folder that contains `data/`) into a one-line file
-`data_root.txt` next to `settings.py`.
 
 
 ## Licence and citation
